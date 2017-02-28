@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import demStyles from "./MapStyles.json";
 
 export default class Map extends Component {
 
@@ -11,6 +12,7 @@ export default class Map extends Component {
       <GoogleMap
         defaultZoom={12}
         defaultCenter={{ lat: 55.9483387, lng: -3.1918747 }}
+        defaultOptions={{ styles: demStyles }}
       >
         {props.bars.map((bar, index) => (
           <Marker

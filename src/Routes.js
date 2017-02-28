@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { withGoogleMap, GoogleMap } from "react-google-maps";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Match
+} from 'react-router-dom'
+
+//import styles
 import './App.css';
 
 //import components
 import Map from './components/map/Map';
 import CardList from './components/cards/CardList';
+import Bar from './components/bar/Bar';
 
 //WPAPI
 var WPAPI = require( 'wpapi' );
@@ -15,7 +24,9 @@ var route = '/bar/(?P<id>)';
 wp.bars = wp.registerRoute(namespace, route);
 
 class App extends Component {
+
   constructor() {
+
     super();
 
     this.getBars = this.getBars.bind(this);
@@ -43,17 +54,33 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Helmet
-          title="Maxxium proof of concept"
-        />
-      <section className="main-container">
-        <Map bars={this.state.bars} />
-        <CardList bars={this.state.bars} />
-      </section>
-      </div>
+      <Router>
+
+        <div className="App">
+          <Helmet
+            title="Maxxium proof of concept"
+          />
+          <section className="main-container">
+            <Map bars={this.state.bars} />
+            <Route
+              exact path="/"
+              render={(props) => (
+                <CardList bars={this.state.bars} {...props} />
+            )} />
+            <Route
+              path="/bar/:slug"
+              render={(props) => (
+                <Bar 
+                  bars={this.state.bars}
+                  loading={this.state.loadingBars}
+                  {...props} />
+            )} />
+          </section>
+        </div>
+      </Router>
     );
   }
 }
+
 
 export default App;
