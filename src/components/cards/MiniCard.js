@@ -5,9 +5,11 @@ export default class MiniCard extends Component {
   render() {
     const { data } = this.props;
     const image = data.acf.bar_image_gallery[0].sizes.thumbnail;
+    const background = {
+      backgroundImage: 'url(' + image + ')'
+    }
     return <Link className="single-post" to={`/bar/${data.slug}`}>
-        <div className="primary-image">
-          <img src={image} alt=""/>
+        <div className="primary-image" style={background}>
         </div>
         <div className="single-post__content">
           <h2 dangerouslySetInnerHTML={{__html:data.title.rendered}} />

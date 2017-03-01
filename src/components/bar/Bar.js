@@ -9,8 +9,12 @@ export default class Bar extends Component {
     const bar = this.props.bars[i];
 
     return <article className="single-bar">
-        {console.log(bar)}
+      {
+        this.props.loading ?
+        <p>🍺🍺🍺🍺🍺</p>
+        :
         <BarContent i={i} bar={bar} loading={this.props.loading} {...this.props} />
+      }
     </article>
   }
 }

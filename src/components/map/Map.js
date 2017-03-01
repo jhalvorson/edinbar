@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { withGoogleMap, GoogleMap, InfoWindow, Marker } from "react-google-maps";
 import demStyles from "./MapStyles.json";
+import { Link } from 'react-router-dom';
 
 export default class Map extends Component {
 
   render() {
 
     const { bars } = this.props;
+    const { detectDrag } = this.props;
 
     const PrimaryMap = withGoogleMap(props => (
       <GoogleMap
@@ -18,7 +20,20 @@ export default class Map extends Component {
           <Marker
             position={{ lat: parseFloat(bar.acf.bar_location.lat), lng: parseFloat(bar.acf.bar_location.lng) }}
             key={index}
-            />
+            onClick={() => props.onMarkerClick(bar)}
+            >
+              {
+                bar.showInfo && (
+                  <InfoWindow onCloseClick={() => props.onMarkerClose(bar)}>
+                    <div>
+                      <img src={bar.acf.bar_image_gallery[0].sizes.thumbnail} alt=""/>
+                      <h1 dangerouslySetInnerHTML={{__html:bar.title.rendered}}/>
+                      <Link to={`/bar/${bar.slug}`}>More Info 🍺</Link>
+                    </div>
+                  </InfoWindow>
+                )
+              }
+          </Marker>
         ))}
       </GoogleMap>
     ));
@@ -32,6 +47,9 @@ export default class Map extends Component {
            <div className="map-container__inner"/>
          }
          bars={bars}
+         onDragStart={detectDrag}
+         onMarkerClick={this.props.onMarkerClick}
+         onMarkerClose={this.props.onMarkerClose}
        />
    );
  }

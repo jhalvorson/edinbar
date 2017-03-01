@@ -30,6 +30,9 @@ class App extends Component {
     super();
 
     this.getBars = this.getBars.bind(this);
+    this.handleMarkerClick = this.handleMarkerClick.bind(this);
+    this.handleMarkerClose = this.handleMarkerClose.bind(this);
+    this.detectDrag = this.detectDrag.bind(this);
 
     this.state = {
       bars: [],
@@ -52,6 +55,40 @@ class App extends Component {
     });
   }
 
+  handleMarkerClick(index) {
+    console.log('works');
+
+    this.setState({
+      bars: this.state.bars.map(bar => {
+        if (bar === index) {
+          return {
+            ...bar,
+            showInfo: true,
+          };
+        }
+        return bar;
+      }),
+    });
+  }
+
+  handleMarkerClose(index) {
+    this.setState({
+      bars: this.state.bars.map(bar => {
+        if (bar === index) {
+          return {
+            ...bar,
+            showInfo: false,
+          };
+        }
+        return bar;
+      }),
+    });
+  }
+
+  detectDrag() {
+    console.log('dragging');
+  }
+
   render() {
     return (
       <Router>
@@ -61,7 +98,12 @@ class App extends Component {
             title="Maxxium proof of concept"
           />
           <section className="main-container">
-            <Map bars={this.state.bars} />
+            <Map
+              bars={this.state.bars}
+              onMarkerClick={this.handleMarkerClick}
+              onMarkerClose={this.handleMarkerClose}
+              detectDrag={this.detectDrag}
+            />
             <Route
               exact path="/"
               render={(props) => (
@@ -70,7 +112,7 @@ class App extends Component {
             <Route
               path="/bar/:slug"
               render={(props) => (
-                <Bar 
+                <Bar
                   bars={this.state.bars}
                   loading={this.state.loadingBars}
                   {...props} />

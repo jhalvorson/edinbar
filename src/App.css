@@ -4,7 +4,7 @@
 }
 
 .map-container {
-  flex: 0 60%;
+  flex: 1;
   height: 100vh;
 }
 
@@ -17,13 +17,12 @@
 /* Post List */
 
 .post-list {
-  flex: 0 40%;
-  width: 40%;
+  width: 500px;
 }
 
 .single-post {
   display: flex;
-  margin: 15px;
+  margin-bottom: 5px;
 }
 
 .single-post h2 {
@@ -47,23 +46,52 @@
   padding: 4px 0;
 }
 
+.primary-image {
+  height: 140px;
+  width: 140px;
+  background-size: cover;
+}
+
 .primary-image img {
-  width: 120px;
-  height: 120px;
+  width: 140px;
+  height: 140px;
 }
 
 /* Single Bar */
 
 .single-bar {
-  flex: 0 40%;
-  width: 40%;
-  padding: 15px;
+  width: 500px;
 }
 
-.single-bar h1 {
-  font-size: 28px;
+.single-bar__hero {
+  height: 250px;
+  width: 100%;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+}
+
+.single-bar__hero:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  content: '';
+  background: rgba(0,0,0,.3);
+  z-index: -1;
+}
+
+.single-bar__hero h1 {
+  font-size: 25px;
   font-weight: 500;
   padding-bottom: 12px;
+  color: #fff;
+  position: absolute;
+  bottom: 15px;
+  left: 30px;
+  right: 15px;
+  line-height: 1.3;
 }
 
 .single-bar p {
@@ -73,4 +101,8 @@
 .single-bar__image img {
   max-width: 100%;
   margin-bottom: 20px;
+}
+
+.single-bar__content {
+  padding: 15px;
 }
