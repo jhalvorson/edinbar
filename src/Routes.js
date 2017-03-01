@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom'
 
 //import styles
-import './App.css';
+import './App.scss';
 
 //import components
 import Map from './components/map/Map';
