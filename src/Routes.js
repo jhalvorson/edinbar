@@ -36,7 +36,8 @@ class App extends Component {
 
     this.state = {
       bars: [],
-      loadingBars: true
+      loadingBars: true,
+      infoWindowOpen: false
     }
   }
 
@@ -60,15 +61,21 @@ class App extends Component {
 
     this.setState({
       bars: this.state.bars.map(bar => {
-        if (bar === index) {
+        if (bar.showInfo === true) {
+          return {
+            ...bar,
+            showInfo: false,
+          };
+        } else if (bar === index) {
           return {
             ...bar,
             showInfo: true,
           };
         }
         return bar;
-      }),
-    });
+      })
+    })
+
   }
 
   handleMarkerClose(index) {
@@ -82,6 +89,7 @@ class App extends Component {
         }
         return bar;
       }),
+      infoWindowOpen: false
     });
   }
 
@@ -92,10 +100,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-
         <div className="App">
           <Helmet
-            title="Maxxium proof of concept"
+            title="Edinbar"
           />
           <section className="main-container">
             <Map
