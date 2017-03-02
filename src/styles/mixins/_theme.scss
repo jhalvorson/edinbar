@@ -1,0 +1,182 @@
+// *****************************************************************************
+// * Scottish Friendly Pattern Library
+// *****************************************************************************
+// *
+// * @name: _theme.scss
+// *
+// * Theme helper. Add classes here that will inherit theme colours as defined
+// * for each styles/config/color-theme-*.scss file. Do not reference any color
+// * values directly in here except for defaults.
+// *
+// *****************************************************************************
+
+@mixin theme(
+  $theme-name: "default",
+  $theme-fg-color: $black,
+  $theme-bg-color: $white,
+  $theme-border-color: $black,
+  $theme-nav-border-color: $grey9,
+  $theme-nav-panel-border: $grey1,
+  $theme-nav-entry-heading: $grey9,
+  $theme-link-color: $green2,
+  $theme-link-color-hover: $green1,
+  $theme-link-bg-color-hover: $white,
+  $theme-link-border-color-hover: $green1
+) {
+  .#{$theme-name} {
+
+    // *****************************************************************************
+    // * THEME HELPER CLASSES
+    // * Wherever these classes are used the element will pick up the themes' colors
+    // * theme__<elementclass>
+    // *****************************************************************************
+
+    // Apply theme to forground (and its :after)
+    .theme__fg {
+      color: $theme-fg-color;
+
+      p,
+      &::after {
+        color: $theme-fg-color;
+      }
+    }
+
+    // Apply theme to underline
+    .theme__ul {
+      &::after {
+        background-color: $theme-nav-border-color;
+      }
+    }
+
+    // Apply theme to background
+    .theme__bg {
+      background-color: $theme-bg-color;
+
+      // Apply background to extended-background-color if used (see mixin)
+      &::before {
+        background-color: $theme-bg-color;
+      }
+    }
+
+    // Dividers
+    .theme__divider {
+      border-color: $theme-border-color;
+
+      &::after {
+        border-top-color: $theme-border-color;
+      }
+    }
+
+    // Override the divider color when the divider is used to blend into the background of the component and show as a bottom arrow to the component itself.
+    .sf-divider--end {
+      border-color: $theme-bg-color;
+
+      &::after {
+        border-top-color: $theme-bg-color;
+      }
+    }
+
+    // Visual Break
+    .page-theme__break {
+
+      &::after {
+        background-color: $theme-border-color !important;
+      }
+    }
+
+    .component-theme__break {
+
+      &::after {
+        @include background-opacity($theme-fg-color, 0.2);
+      }
+    }
+
+    // Links
+    .theme__link {
+      border-color: $theme-link-color;
+      color: $theme-link-color;
+
+      &:hover,
+      &:focus {
+        border-color: $theme-link-border-color-hover;
+        color: $theme-link-color-hover;
+        background-color: $theme-link-bg-color-hover;
+
+        .icon {
+          fill: $theme-link-color-hover;
+        }
+      }
+
+      .icon {
+        fill: $theme-link-color;
+      }
+    }
+
+    // Border Top on whole component
+    .theme__border-top {
+      border-top: 20px solid darken($theme-bg-color, 6%);
+    }
+
+
+
+    // *****************************************************************************
+    // * THEMED COMPONENTS:
+    // * Some components need some specific help for the Theme to apply nicely
+    // *****************************************************************************
+
+    // Theme the open state of Toggle Buttons only (because of the Mega Menu on mobile)
+    .sf-toggle.open {
+      border-color: $theme-fg-color;
+      color: $theme-fg-color;
+
+      &::after {
+        color: $theme-fg-color;
+      }
+    }
+
+    &.sf-nav-primary__entry.js-isOpen {
+      @include breakpoint-max($breakpoint-medium-max) {
+        color: $white;
+        background-color: $theme-nav-entry-heading;
+      }
+    }
+
+    .sf-nav-primary__link {
+      &:after {
+        background-color: $theme-bg-color;
+      }
+    }
+
+    &.sf-nav-primary__entry.js-isOpen .sf-nav-primary__link {
+      @include breakpoint-max($breakpoint-medium-max) {
+        color: $white;
+      }
+
+      .sf-toggle .icon {
+        @include breakpoint-max($breakpoint-medium-max) {
+          fill: $white;
+        }
+      }
+    }
+
+    .sf-nav-mega__overview {
+      @include breakpoint($breakpoint-medium) {
+        box-shadow: inset 0 10px 0 0 $theme-nav-panel-border, 0 10px 0 0 rgba(0, 0, 0, 0.05);
+      }
+
+      &::before {
+        background-color: $theme-bg-color;
+        box-shadow: inset 0 10px 0 0 $theme-nav-panel-border, 0 10px 0 0 rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    .sf-video__player {
+      &::before {
+        background-color: $theme-bg-color;
+      }
+    }
+
+  }
+
+}
+

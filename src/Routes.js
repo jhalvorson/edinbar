@@ -15,6 +15,7 @@ import './App.scss';
 import Map from './components/map/Map';
 import CardList from './components/cards/CardList';
 import Bar from './components/bar/Bar';
+import Navigation from './components/navigation/Navigation';
 
 //WPAPI
 var WPAPI = require( 'wpapi' );
@@ -32,7 +33,7 @@ class App extends Component {
     this.getBars = this.getBars.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
     this.handleMarkerClose = this.handleMarkerClose.bind(this);
-    this.detectDrag = this.detectDrag.bind(this);
+    this.checkIsVisible = this.checkIsVisible.bind(this);
 
     this.state = {
       bars: [],
@@ -75,7 +76,6 @@ class App extends Component {
         return bar;
       })
     })
-
   }
 
   handleMarkerClose(index) {
@@ -93,8 +93,8 @@ class App extends Component {
     });
   }
 
-  detectDrag() {
-    console.log('dragging');
+  checkIsVisible() {
+    console.log('hey')
   }
 
   render() {
@@ -104,12 +104,14 @@ class App extends Component {
           <Helmet
             title="Edinbar"
           />
+        <Navigation />
           <section className="main-container">
             <Map
               bars={this.state.bars}
               onMarkerClick={this.handleMarkerClick}
               onMarkerClose={this.handleMarkerClose}
               detectDrag={this.detectDrag}
+              checkIsVisible={this.checkIsVisible}
             />
             <Route
               exact path="/"
@@ -122,6 +124,7 @@ class App extends Component {
                 <Bar
                   bars={this.state.bars}
                   loading={this.state.loadingBars}
+                  onMarkerClose={this.handleMarkerClose}
                   {...props} />
             )} />
           </section>

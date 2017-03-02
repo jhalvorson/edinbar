@@ -1,114 +1,13 @@
+// Mixins
+@import "./styles/mixins/mixins";
+
 // Vars
-$color-white: #FFFFFF;
-$color-dark-overlay: rgba(0, 0, 0, .3);
+@import "./styles/vars/vars";
 
+// Base
+@import "./styles/base";
 
-// Containers
-
-.main-container {
-  display: flex;
-}
-
-.map-container {
-  flex: 1;
-  height: 100vh;
-}
-
-.map-container__inner {
-  width: 100%;
-  height: 100vh;
-}
-
-
-/* Post List */
-
-.post-list {
-  width: 500px;
-}
-
-.single-post {
-  display: flex;
-  margin-bottom: 5px;
-
-  h2 {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-weight: 500;
-    font-size: 18px;
-  }
-
-  &__content {
-    padding-left: 10px;
-
-    .day {
-      padding-right: 4px;
-      font-weight: 500;
-      font-size: 14px;
-    }
-  }
-}
-
-.opening-times__entry {
-  padding: 4px 0;
-}
-
-.primary-image {
-  width: 140px;
-  height: 140px;
-  background-size: cover;
-
-  img {
-   width: 140px;
-   height: 140px;
-  }
-}
-
-// single bar
-
-.single-bar {
-  width: 500px;
-
-  &__hero {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    height: 250px;
-    background-size: cover;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      content: "";
-      background: $color-dark-overlay;
-    }
-
-    h1 {
-      position: absolute;
-      right: 15px;
-      bottom: 15px;
-      left: 30px;
-      padding-bottom: 12px;
-      font-weight: 500;
-      font-size: 25px;
-      line-height: 1.3;
-      color: $color-white;
-    }
-  }
-
-  p {
-    line-height: 1.4;
-  }
-
-  &__image img {
-    max-width: 100%;
-    margin-bottom: 20px;
-  }
-
-  &__content {
-    padding: 15px;
-  }
-}
+// Components
+@import "./components/navigation/navigation";
+@import "./components/cards/cards";
+@import "./components/bar/bar";

@@ -1,0 +1,33 @@
+// *****************************************************************************
+// * Scottish Friendly Pattern Library
+// *****************************************************************************
+// *
+// * @name: _extend-background-color.scss
+// * Extends the background color `lane` beyond the bounds of the viewport
+// * Color comes from component theme.
+// *
+// *****************************************************************************
+
+@mixin extend-background-color() {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1000rem;
+    z-index: -1;
+    width: 1000rem;
+    content: "";
+  }
+
+  &:after {
+    position: absolute;
+    top: 0;
+    right: -1000rem;
+    bottom: 0;
+    z-index: -1;
+    width: 1000rem;
+    content: "";
+  }
+}

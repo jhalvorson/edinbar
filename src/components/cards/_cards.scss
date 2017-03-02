@@ -1,0 +1,40 @@
+.post-list {
+  width: 500px;
+}
+
+.single-post {
+  display: flex;
+  margin-bottom: 5px;
+
+  h2 {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  &__content {
+    padding-left: 10px;
+
+    .day {
+      padding-right: 4px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+  }
+}
+
+.opening-times__entry {
+  padding: 4px 0;
+}
+
+.primary-image {
+  width: 140px;
+  height: 140px;
+  background-size: cover;
+
+  img {
+   width: 140px;
+   height: 140px;
+  }
+}

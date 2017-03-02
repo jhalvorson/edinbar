@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class BarContent extends Component {
+
   render() {
     const { bar } = this.props;
     const image = bar.acf.bar_image_gallery[0].sizes.large;
@@ -9,11 +11,18 @@ export default class BarContent extends Component {
     }
     return <main>
           <div className="single-bar__hero" style={background}>
-            <h1 dangerouslySetInnerHTML={{__html:bar.title.rendered}} />
+            <Link to="/" className="button-back">
+              Back
+            </Link>
+            <h1 dangerouslySetInnerHTML={{__html:bar.title.rendered}}/>
           </div>
           <section className="single-bar__content">
-            <p dangerouslySetInnerHTML={{__html: bar.acf.bar_content}} />
 
+            <div className="single-bar__content--intro">
+              <p dangerouslySetInnerHTML={{__html: bar.acf.bar_content}} />
+            </div>
+
+            <h4 className="opening-times__title">Opening Times:</h4>
             <ul className="opening-times">
               {
                 bar.acf.opening_times.map((time, index) =>
@@ -23,6 +32,17 @@ export default class BarContent extends Component {
                 </li> )
               }
             </ul>
+
+            {
+              bar.acf.price_range ?
+              <div>
+                <h4 className="opening-times__title">Average price per pint:</h4>
+                <p>About £{bar.acf.price_range}</p>
+              </div>
+              :
+              null
+            }
+
           </section>
     </main>
   }

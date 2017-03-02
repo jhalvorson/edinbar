@@ -47,7 +47,7 @@ export default class Map extends Component {
            <div className="map-container__inner"/>
          }
          bars={bars}
-         onDragStart={detectDrag}
+         onDragStart={this.props.checkIsVisible}
          onMarkerClick={this.props.onMarkerClick}
          onMarkerClose={this.props.onMarkerClose}
        />

@@ -1,0 +1,72 @@
+.single-bar {
+  width: 500px;
+
+  &__hero {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+      content: "";
+      background: $color-dark-overlay;
+    }
+
+    h1 {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      left: 30px;
+      padding-bottom: 12px;
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 1.3;
+      color: $color-white;
+    }
+  }
+
+  p {
+    line-height: 1.4;
+  }
+
+  &__image img {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__content {
+    padding: 15px;
+
+    // &--intro {
+    //   @include rem(padding-left, 10px);
+    //   border-left: 2px solid red;
+    // }
+  }
+
+  .button-back {
+    @include rem(padding, 15px);
+    font-weight: 500;
+    color: $color-white;
+  }
+
+  .opening-times {
+
+    &__title {
+      @include rem(padding, 10px 0);
+      font-weight: 500;
+    }
+  }
+
+  .secondary-image {
+    display: block;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}

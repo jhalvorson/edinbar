@@ -1,0 +1,39 @@
+// *****************************************************************************
+// * Scottish Friendly Pattern Library
+// *****************************************************************************
+// *
+// * @name: _visualbreak.scss
+// *
+// * Places a  divider below an element. Note, it's up to the component to
+// * adjust the spacing above and below this visual divider.
+// *
+// * This mixin is not to be confused with the divider pattern, which should be
+// * used for full width divisions.
+// *
+// *****************************************************************************
+
+@mixin visualbreak( $margin: $visualbreak-mobile-margins, $width: $visualbreak-mobile-width, $alignment: left) {
+
+ &:after {
+    @include rem(width, $width);
+    @include rem(height, 6px);
+    @include rem(margin, $margin);
+    display: block;
+    border-radius: 6px;
+    content: "";
+    background-color: $grey10;
+
+    @if $alignment == center {
+      margin-right: auto;
+      margin-left: auto;
+    }
+    @if $alignment == left {
+      margin-left: 0;
+      text-align: left;
+    }
+    @if $alignment == right {
+      margin-right: 0;
+      text-align: right;
+    }
+  }
+}

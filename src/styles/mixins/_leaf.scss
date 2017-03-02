@@ -1,0 +1,33 @@
+// *****************************************************************************
+// * Scottish Friendly Pattern Library
+// *****************************************************************************
+// *
+// * @name: _leaf.scss
+// *
+// *
+// *****************************************************************************
+
+@mixin leaf() {
+
+  $leaf-url: url("../images/leaf.svg");
+
+  &:before {
+
+    @include breakpoint($breakpoint-xsmall) {
+      @include rem(width, 30px);
+      @include rem(margin-right, 10px);
+      display: inline-block;
+      content: $leaf-url;
+    }
+
+    @include breakpoint($breakpoint-small) {
+      @include rem(width, 40px);
+    }
+
+    @include breakpoint($breakpoint-medium) {
+      @include rem(width, 45px);
+    }
+  }
+
+}
+
