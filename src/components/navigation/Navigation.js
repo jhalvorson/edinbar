@@ -5,7 +5,7 @@ export default class Navigation extends Component {
     return <nav className="nav">
       <div className="nav-inner">
         <div className="nav-inner__logo">
-          <h1>Edinbar 🍺</h1>
+          <h1>Edinbar</h1>
         </div>
         <div className="nav-inner__search">
           <form>
@@ -15,11 +15,7 @@ export default class Navigation extends Component {
             </fieldset>
           </form>
         </div>
-        <ul className="nav-inner__list">
-          <li>
-
-          </li>
-        </ul>
+        <button className="submit-a-bar">Submit</button>
       </div>
     </nav>
   }
