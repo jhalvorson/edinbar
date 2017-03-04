@@ -12,7 +12,7 @@ export default class BarContent extends Component {
     return <main>
           <div className="single-bar__hero" style={background}>
             <Link to="/" className="button-back">
-              Back
+              <img src="../../assets/icons/arrow-left.svg" alt=""/>
             </Link>
             <h1 dangerouslySetInnerHTML={{__html:bar.title.rendered}}/>
           </div>

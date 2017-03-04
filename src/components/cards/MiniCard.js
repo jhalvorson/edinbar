@@ -8,10 +8,10 @@ export default class MiniCard extends Component {
     const background = {
       backgroundImage: 'url(' + image + ')'
     }
-    return <Link className="single-post" to={`/bar/${data.slug}`}>
+    return <Link className="mini-card" to={`/bar/${data.slug}`}>
         <div className="primary-image" style={background}>
         </div>
-        <div className="single-post__content">
+        <div className="mini-card__content">
           <h2 dangerouslySetInnerHTML={{__html:data.title.rendered}} />
           <ul className="opening-times">
             {

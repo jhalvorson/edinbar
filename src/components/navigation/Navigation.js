@@ -15,7 +15,6 @@ export default class Navigation extends Component {
             </fieldset>
           </form>
         </div>
-        <button className="submit-a-bar">Submit</button>
       </div>
     </nav>
   }

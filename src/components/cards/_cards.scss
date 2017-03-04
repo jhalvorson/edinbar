@@ -2,15 +2,16 @@
   width: 500px;
 }
 
-.single-post {
+.mini-card {
   display: flex;
   margin-bottom: 5px;
+  color: $color-text;
+  text-decoration: none;
 
   h2 {
-    padding-top: 7px;
-    padding-bottom: 7px;
-    font-weight: 500;
-    font-size: 18px;
+    @include rem(font-size, 22px);
+    @include rem(padding, 7px 0);
+    font-weight: 600;
   }
 
   &__content {
