@@ -1,0 +1,16 @@
+.map-infowindow {
+  display: flex;
+  background-color: $color-white;
+  align-items: center;
+
+  img {
+    @include rem(height, 110px);
+    width: auto;
+  }
+
+  h3 {
+    @include rem(font-size, 18px);
+    @include rem(padding, 0 20px);
+    line-height: 1;
+  }
+}

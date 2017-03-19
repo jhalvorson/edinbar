@@ -53,6 +53,7 @@
   }
 
   .opening-times {
+    @include rem(margin, 15px 0);
 
     &__title {
       @include rem(padding, 10px 0);

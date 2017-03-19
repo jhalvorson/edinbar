@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 export default class Navigation extends Component {
   render() {
@@ -18,8 +18,4 @@ export default class Navigation extends Component {
       </div>
     </nav>
   }
-}
-
-Navigation.propTypes = {
-
 }

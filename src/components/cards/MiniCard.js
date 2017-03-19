@@ -13,16 +13,6 @@ export default class MiniCard extends Component {
         </div>
         <div className="mini-card__content">
           <h2 dangerouslySetInnerHTML={{__html:data.title.rendered}} />
-          <ul className="opening-times">
-            {
-              data.acf.opening_times.map((time, index) =>
-                <li key={index} className="opening-times__entry">
-                  <span className="day">{time.day}:</span>
-                  <span className="time">{time.times}</span>
-                </li>
-              )
-            }
-          </ul>
         </div>
     </Link>
   }

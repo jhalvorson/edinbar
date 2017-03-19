@@ -22,8 +22,8 @@ export default class BarContent extends Component {
               <p dangerouslySetInnerHTML={{__html: bar.acf.bar_content}} />
             </div>
 
-            <h4 className="opening-times__title">Opening Times:</h4>
             <ul className="opening-times">
+              <h4 className="opening-times__title">Opening Times:</h4>
               {
                 bar.acf.opening_times.map((time, index) =>
                 <li key={index} className="opening-times__entry">
@@ -35,7 +35,7 @@ export default class BarContent extends Component {
 
             {
               bar.acf.price_range ?
-              <div>
+              <div className="price-range">
                 <h4 className="opening-times__title">Average price per pint:</h4>
                 <p>About £{bar.acf.price_range}</p>
               </div>

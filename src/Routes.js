@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
-import { withGoogleMap, GoogleMap } from "react-google-maps";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  Match
-} from 'react-router-dom'
+  history
+} from 'react-router-dom';
 
 //import styles
 import './App.scss';
@@ -26,9 +24,9 @@ wp.bars = wp.registerRoute(namespace, route);
 
 class App extends Component {
 
-  constructor() {
+  constructor(props) {
 
-    super();
+    super(props);
 
     this.getBars = this.getBars.bind(this);
     this.handleMarkerClick = this.handleMarkerClick.bind(this);
@@ -38,9 +36,17 @@ class App extends Component {
     this.state = {
       bars: [],
       loadingBars: true,
-      infoWindowOpen: false
+      infoWindowOpen: false,
+      center: {
+        lat: 55.9483387,
+        lng: -3.1918747
+      }
     }
   }
+
+  static contextTypes = {
+    router: React.PropTypes.object,
+  };
 
   componentDidMount() {
     this.getBars();
@@ -57,9 +63,7 @@ class App extends Component {
     });
   }
 
-  handleMarkerClick(index) {
-    console.log('works');
-
+  handleMarkerClick(index, props, context) {
     this.setState({
       bars: this.state.bars.map(bar => {
         if (bar.showInfo === true) {
@@ -74,8 +78,13 @@ class App extends Component {
           };
         }
         return bar;
-      })
-    })
+      }),
+      center: {
+        lat: parseFloat(index.acf.bar_location.lat),
+        lng: parseFloat(index.acf.bar_location.lng)
+      }
+    });
+    this.context.router.push('/my-new-location')
   }
 
   handleMarkerClose(index) {
@@ -88,8 +97,7 @@ class App extends Component {
           };
         }
         return bar;
-      }),
-      infoWindowOpen: false
+      })
     });
   }
 
@@ -112,6 +120,7 @@ class App extends Component {
               onMarkerClose={this.handleMarkerClose}
               detectDrag={this.detectDrag}
               checkIsVisible={this.checkIsVisible}
+              center={this.state.center}
             />
             <Route
               exact path="/"
@@ -125,6 +134,7 @@ class App extends Component {
                   bars={this.state.bars}
                   loading={this.state.loadingBars}
                   onMarkerClose={this.handleMarkerClose}
+                  center={this.state.center}
                   {...props} />
             )} />
           </section>
@@ -133,6 +143,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App;
